@@ -1,15 +1,18 @@
-const express = require('express');
+const express = require("express");
 const app = express();
 
-app.use("/test", (req, res) => {
-    res.send("hello from the server");
+const { adminAuth } = require("./middlewares/auth");
+
+app.use("/admin", adminAuth);
+
+app.get("/admin/:userId", (req, res) => {
+  res.send("All data");
 });
 
-app.use("/hello", (req, res) => {
-    res.send("hello Hello");
+app.get("/user/:userId", (req, res) => {
+  res.send("All data");
 });
 
 app.listen(3000, () => {
-    console.log("App started");
+  console.log("App started");
 });
-
